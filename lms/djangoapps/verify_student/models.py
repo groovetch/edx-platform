@@ -935,12 +935,12 @@ class SoftwareSecurePhotoVerification(PhotoVerification):
             return fake_response
 
         headers, body = self.create_request(copy_id_photo_from=copy_id_photo_from)
-
+        # checkout PROD-1395 for why we are adding system certificate paths for verification.
         response = requests.post(
             settings.VERIFY_STUDENT["SOFTWARE_SECURE"]["API_URL"],
             headers=headers,
             data=simplejson.dumps(body, indent=2, sort_keys=True, ensure_ascii=False).encode('utf-8'),
-            verify=False
+            verify='/etc/ssl/certs/ca-certificates.crt'
         )
 
         log.info(u"Sent request to Software Secure for receipt ID %s.", self.receipt_id)
