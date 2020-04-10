@@ -50,7 +50,6 @@ from lms.djangoapps.certificates import api as certs_api
 from lms.djangoapps.courseware.access_utils import (
     check_authentication,
     check_enrollment,
-    check_public_access
 )
 from lms.djangoapps.courseware.courseware_access_exception import CoursewareAccessException
 from lms.djangoapps.courseware.exceptions import CourseAccessRedirect
