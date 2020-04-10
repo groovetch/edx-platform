@@ -3375,8 +3375,7 @@ class MFERedirectTests(BaseViewsTestCase):
         lms_url, mfe_url = self._get_urls()
 
         with override_waffle_flag(REDIRECT_TO_COURSEWARE_MICROFRONTEND, True):
-            response = self.client.get(lms_url)
-            assert response['Location'] == mfe_url
+            assert self.client.get(lms_url).url == mfe_url
 
     def test_staff_no_redirect(self):
         lms_url, mfe_url = self._get_urls()
